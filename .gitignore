@@ -13,3 +13,6 @@ demo-data/
 .DS_Store
 *.tsbuildinfo
 demo-contacts.csv
+public/
+.vercel
+.env*
