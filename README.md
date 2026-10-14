@@ -99,6 +99,13 @@ not depend on input order.
 docker compose up --build      # http://localhost:8080 → "Run the demo"
 ```
 
+Dev mode (source mounted, API auto-reload, Vite hot reload, Postgres on `localhost:5435`):
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+# API http://localhost:8010/docs · dashboard http://localhost:5174
+```
+
 Locally:
 
 ```bash
