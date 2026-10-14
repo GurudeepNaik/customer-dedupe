@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: dedupe
+      POSTGRES_USER: dedupe
+      POSTGRES_PASSWORD: dedupe
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dedupe"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    environment:
+      DEDUPE_DATABASE_URL: postgresql+psycopg://dedupe:dedupe@db:5432/dedupe
+      DEDUPE_CORS_ORIGINS: '["http://localhost:8080"]'
+    depends_on:
+      db: { condition: service_healthy }
+
+  web:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [api]
+
+volumes:
+  pgdata:
