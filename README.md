@@ -11,6 +11,8 @@ things nobody can explain.
 `customer-dedupe` finds duplicates, **explains every decision field by field**, refuses to merge
 when it is not sure, and produces a golden record that says where each value came from.
 
+**Live demo: [customer-dedupe-demo.vercel.app](https://customer-dedupe-demo.vercel.app)** — click "Run the demo". Free tier: the first request after a quiet spell takes a few seconds.
+
 ![Review queue](docs/review-queue.png)
 
 ## How it decides
@@ -94,6 +96,8 @@ no human "different" decision is ever overridden, and a regression test checks t
 not depend on input order.
 
 ## Quick start
+
+Deploy your own copy to Vercel (one FastAPI function + Neon Postgres): `scripts/deploy-vercel.sh`.
 
 ```bash
 docker compose up --build      # http://localhost:8080 → "Run the demo"
